@@ -29,7 +29,6 @@ public class Conf{
 
 	private void start(){
 		this.buildVariables();
-		this.buildRoutingTable();
 
 	}
 
@@ -65,34 +64,17 @@ public class Conf{
 	* Checar se a o endereço e a porta estão disponíveis
 	* 
 	*/
+	/*
 	private void checkSettings(){
 
 		try{
-			// checando o Tabela de Roteamento
-			if(this.routing_table == null){
-				throw new Exception("Tabela de Roteamento não iniciada");
-			}
-			// Checando o mode escolhido
-			if(!this.routing_table.containsKey(mode)){
-				throw new Exception("Modo escolhido não existe na Tabela de Roteamento");	
-			}
-
-			if(this.hosts_status == null){
-				throw new Exception("Hosts Status não iniciado corretamente");	
-			}
-
-			if(this.interfaces == null){
-				throw new Exception("Interfaces não carregadas corretamente");
-			}
-			if(this.alias == null){
-				throw new Exception("Alias não carregadas corretamente");
-			}
 			// REFATORAR: Checar se todas os alias estão definidos na interface
 		}catch(Exception e){
 			System.err.println(e.getMessage());
 			System.exit(1);
 		}
 	}
+	*/
 
 	/*
 	* #######################################################
@@ -103,7 +85,7 @@ public class Conf{
 		return this.port;
 	}
 
-	public JSONObject getAddress(){
+	public String getAddress(){
 		return this.address;
 	}
 

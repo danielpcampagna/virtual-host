@@ -42,7 +42,7 @@ public class Host{
 	private void startSettings(){
 		System.out.println("Starting settings....");
 		this.settings = Conf.getInstance();
-		this.input = new Servidor(settings.getPort(), settings.getAddress());
+		this.input = new Servidor(settings.getAddress(), settings.getPort());
 
 	}
 
@@ -68,7 +68,7 @@ public class Host{
 
 	public void waitingConnections() throws IOException{
 		System.out.println("\ntype help for help:\n");
-		
+
 	}
 
 	/*
