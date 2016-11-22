@@ -25,10 +25,14 @@ public class Cliente {
 	}
 
 	public void run(){
-   	this.start();
-   	this.waiting();
-   	this.messages();
-   	this.exit();
+   	try {
+	   	this.start();
+	   	this.waiting();
+	   	this.messages();
+	   	this.exit();
+	  } catch(Exception e){
+	  	this.errorMessage(e);
+	  }
 	}	
 
 	private void start() throws UnknownHostException, IOException {
@@ -43,7 +47,7 @@ public class Cliente {
 	private void waiting(){
 	}
 
-	private void messages(){
+	private void messages() throws IOException{
 		Scanner teclado = new Scanner(System.in);
     PrintStream saida = new PrintStream(clientSocket.getOutputStream());
     
@@ -61,5 +65,9 @@ public class Cliente {
 	}
 
 	private void exit(){
+	}
+
+	private void errorMessage(Exception e){
+		System.err.println(e.getMessage());
 	}
 }

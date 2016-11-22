@@ -27,12 +27,12 @@ public class Servidor implements Runnable {
 	   	this.waiting();
 	   	this.messages();
 	   	this.exit();
-	  } catch(IOException e){
+	  } catch(Exception e){
 	  	this.errorMessage(e);
 	  }
 	}
 
-	private void start() {
+	private void start() throws IOException, UnknownHostException {
 		this.serverSocket = new ServerSocket(this.port, 2, InetAddress.getByName(this.address));
     System.out.println("Porta "+this.port+" aberta!");
     System.out.println("Endereço "+this.address+" em uso!");
@@ -59,7 +59,7 @@ public class Servidor implements Runnable {
     entrada.close();
 	}
 
-	private void exit(){
+	private void exit() throws IOException{
 		serverSocket.close();
 	}
 
