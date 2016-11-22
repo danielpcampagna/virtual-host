@@ -51,7 +51,7 @@ public class Cliente {
     while (teclado.hasNextLine()) {
       msg = teclado.nextLine();
       saida.println(msg);
-      if(saida.println()){
+      if(msg.trim().equals(EXIT_KEYWORD)){
       	break;
       }
     }

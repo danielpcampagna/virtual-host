@@ -32,19 +32,19 @@ public class Servidor implements Runnable {
 	  }
 	}
 
-	private void start() throws IOException {
+	private void start() {
 		this.serverSocket = new ServerSocket(this.port, 2, InetAddress.getByName(this.address));
     System.out.println("Porta "+this.port+" aberta!");
     System.out.println("Endereço "+this.address+" em uso!");
 	}
 
-	private void waiting(){
+	private void waiting() throws IOException{
     clientSocket = serverSocket.accept();
     System.out.println("Nova conexão com o cliente " +   
       clientSocket.getInetAddress().getHostAddress());
 	}
 
-	private void messages(){
+	private void messages() throws IOException{
 		Scanner entrada = new Scanner(clientSocket.getInputStream());
 		String msg;
 
