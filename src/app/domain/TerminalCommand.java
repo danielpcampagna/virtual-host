@@ -8,10 +8,11 @@ public abstract class TerminalCommand {
 	}
 
 	private String interprete(String cmd){
-
+		// execute regex
+		return "help";
 	}
 
-	abstract String execute(String cmd);
+	protected abstract String execute(String cmd);
 
 	public String msgHelp(){
 		String	result;
