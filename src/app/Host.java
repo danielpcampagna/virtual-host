@@ -67,9 +67,8 @@ public class Host{
 	}
 
 	public void waitingConnections() throws IOException{
-		System.out.println("\nwaiting connections:\n");
-				
-
+		System.out.println("\ntype help for help:\n");
+		
 	}
 
 	/*
