@@ -1,5 +1,5 @@
 package src.app.domain;
 
-public class TerminalCommands {
+public class UbuntuCommand {
 	
 }
