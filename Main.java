@@ -1,14 +1,14 @@
 
 import org.json.simple.JSONObject;
 
-import src.app.Router;
+import src.app.Host;
 
 import java.lang.NoClassDefFoundError;
 
 public class Main {
   public static void main(String[] args){
   	System.out.println("Main!!");
-  	Router app = new Router();
+  	Host app = new Host();
   	app.start();
   }
 }
