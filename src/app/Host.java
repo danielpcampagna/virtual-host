@@ -68,7 +68,7 @@ public class Host{
 
 	public void waitingConnections() throws IOException{
 		System.out.println("\ntype help for help:\n");
-
+		Scanner teclado = new Socket(System.in);
 	}
 
 	/*

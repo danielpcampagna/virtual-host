@@ -2,8 +2,6 @@
 
 ## To Do
 
-
-* 2. Abrir a conexão como cliente.
 * 3. Esperar receber um arquivo como servidor
 * 4. Enviar um arquivo como cliente
 * 5. Comunicação de qual algoritmo de encriptamento será usado
@@ -16,6 +14,8 @@
 
 ## Doing
 
-* 1. Abrir a conexão como servidor.
+* 2. Abrir a conexão como cliente.
 
 ## Done
+
+* 1. Abrir a conexão como servidor.
