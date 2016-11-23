@@ -14,11 +14,19 @@ public class Conf{
 	private static final String confFile = "conf/default.json";
 
 	// Chaves do arquivo de configuração
-	public static final String ADDRESS = "address";
-	public static final String PORT = "port";
+	public static final String HOST = "host";
+	public static final String HOST_ADDRESS = "address";
+	public static final String HOST_PORT = "port";
+
+	public static final String MODE = "mode";
+
+	// Valores padrões para MODE
+	public static final String MODE_SERVER = "server";
+	public static final String MODE_CLIENT = "client";
 
 	// Valores das chaves
 	private String address;
+	private String mode;
 	private int port;
 
 	private JSONObject conf;
@@ -48,8 +56,11 @@ public class Conf{
 		* # AS VARIÁVEIS DO ARQUIVO DE CONFIGURAÇÃO
 		* ##########################################
 		*/
-		this.address = (String) conf.get(ADDRESS);
-		this.port = (int)(long)(conf.get(PORT));
+		JSONObject host = ((JSONObject)conf.get(HOST));
+		this.address = (String) host.get(HOST_ADDRESS);
+		this.port = (int)(long)(host.get(HOST_PORT));
+
+		this.mode = (String)(conf.get(MODE));
 
 		//this.checkSettings();
 
@@ -87,6 +98,14 @@ public class Conf{
 
 	public String getAddress(){
 		return this.address;
+	}
+
+	public boolean isClient(){
+		return this.mode.trim().equals(MODE_CLIENT);
+	}
+
+	public boolean isServer(){
+		return this.mode.trim().equals(MODE_SERVER);
 	}
 
 }

@@ -17,15 +17,30 @@ public class Cliente {
 
 	public Cliente(String address, int port, String serverAddress, int serverPort) {
 		// REFTORAR: Usar funçoes 'set' e checar a validade dos valores passados
-		this.address 				= address;
-		this.port 					= port;
-		this.serverAddress 	= serverAddress;
-		this.serverPort 		= serverPort;
+		this(address, port);
+		this.setDst(serverAddress, serverPort);
 
 	}
 
+	public Cliente(String address, int port) {
+		// REFTORAR: Usar funçoes 'set' e checar a validade dos valores passados
+		this.address 				= address;
+		this.port 					= port;
+
+	}
+
+	public void setDst(String serverAddress, int serverPort){
+		this.serverAddress 	= serverAddress;
+		this.serverPort 		= serverPort;
+	}
+
+
 	public void run(){
    	try {
+   		if(this.serverAddress == null
+			 || this.serverPort == 0){
+				throw new Exception("Informe o endereço e a porta de destino");
+			}
 	   	this.start();
 	   	this.waiting();
 	   	this.messages();

@@ -42,18 +42,25 @@ public class Host{
 	private void startSettings(){
 		System.out.println("Starting settings....");
 		this.settings = Conf.getInstance();
-		this.input = new Servidor(settings.getAddress(), settings.getPort());
+		if(this.settings.isServer()){
+			this.input = new Servidor(settings.getAddress(), settings.getPort());
+		}else if(this.settings.isClient()){
+			this.output = new Cliente(settings.getAddress(), settings.getPort());
+		}
 
 	}
 
 	private void startService() throws IOException {
-		System.out.println("Starting service....");
-		new Thread(input).start();
-		this.waitingConnections();
+		
+		System.out.println("###################################");
+		System.out.println("####### VIRTUAL HOST STARTED ######");
+		System.out.println("###################################");
 
-		System.out.println("###################################");
-		System.out.println("###### VIRTUAL ROUTER STARTED #####");
-		System.out.println("###################################");
+		if(this.settings.isServer()){
+			new Thread(input).start();
+		}else if(this.settings.isClient()){
+			this.hostTerminal();
+		}
 
 		Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
         public void run() {
@@ -63,12 +70,32 @@ public class Host{
 	}
 
 	public void down() {
-
+		System.out.println();
+		System.out.println("###################################");
+		System.out.println("####### VIRTUAL HOST EXITED! ######");
+		System.out.println("###################################");
+		System.out.println();
 	}
 
-	public void waitingConnections() throws IOException{
+	public void hostTerminal() throws IOException{
 		System.out.println("\ntype help for help:\n");
-		Scanner teclado = new Socket(System.in);
+		Scanner teclado = new Scanner(System.in);
+		String msg;
+
+		while(true){
+			System.out.print("$ ");
+			msg = teclado.nextLine();
+			// REFATORAR: usar interpretador para captura o ip de origem e destino
+			if(msg.trim().equals("connect")){
+				output.setDst("192.168.0.10", 12345);
+				System.out.println("### Connected");
+				output.run();
+				
+			}else if(msg.trim().equals("exit")){
+				break;
+			}
+		}
+
 	}
 
 	/*
