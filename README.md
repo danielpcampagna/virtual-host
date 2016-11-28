@@ -15,11 +15,9 @@ git clone git@github.com:danielpcampagna/virtual-host.git
 * 2. Instale as dependências, compile e inicie o serviço
 
 ```
-make install
-
-make setup
-
-make start
+make install // baixa e instala as dependências
+make setup   // compila o projeto com as dependências
+make start   // inicia o projeto com as depenências e as configurações do arquivo `conf/default.json`
 ```
 
 
@@ -38,13 +36,20 @@ git pull origin master
 git checkout -b feature/nome-da-sua-branch
 ```
 
-* 3. Após as alterações, o commit e o push, faça uma merge da master para a sua branch e teste.
+* 3. Após as alterações, o commit e o push
 
 ```
-git add .
+git add .  // Adicione apenas os arquivos desejados
 git commit -m "mensagem-do-commit"
 git push origin feature/nome-da-sua-branch
-git fetch --all
+```
+
+* 4. Atualize a master e faça o merge dela para a sua branch
+
+```
+git checkout master
+git pull origin master
+git checkout feature/nome-da-sua-branch
 git merge master
 ```
 
@@ -53,6 +58,5 @@ git merge master
 ```
 git checkout master
 git pull origin master
-git merge	feature/nome-da-sua-branch
+git merge feature/nome-da-sua-branch
 ```
-
