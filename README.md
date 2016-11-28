@@ -60,3 +60,16 @@ git checkout master
 git pull origin master
 git merge feature/nome-da-sua-branch
 ```
+
+
+## Descrição do projeto
+
+* `conf/`:   **arquivos de configuração** básica para funcionamento do **Virtual-Host**
+* `data/`:   **arquivos**, bancos de dados etc
+* `lib/`:    **bibliotecas** usadas pelo projeto
+* `src/`:    **projeto**
+  * `app/`:  contém as principais classes usados pelo projeto
+    * `domain/`: classes de domínio do projeto
+  * `conf/`: classe que contém as informações básicas de configuração
+  * `util/`: classes genericas para auxilar na construção do projeto
+* `test/`: classes de testes da aplicação `src`
