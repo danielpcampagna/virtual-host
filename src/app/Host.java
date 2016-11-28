@@ -81,6 +81,9 @@ public class Host{
 		TerminalCommand terminal = new TerminalCommand(){
 				protected void connect(String address, int port){
 					System.out.println("Conectando com " + address + ": "+ port);
+					output.setDst(address, port);
+					output.run();
+	
 				}
 				protected void exit(){
 					System.out.println("Exiting");
