@@ -2,7 +2,6 @@ package src.app;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.Scanner;
 import java.util.*;
 
 import org.json.simple.JSONObject;
@@ -79,10 +78,6 @@ public class Host{
 	}
 
 	public void hostTerminal() throws IOException{
-		System.out.println("\ntype help for help:\n");
-		Scanner teclado = new Scanner(System.in);
-		String msg;
-
 		TerminalCommand terminal = new TerminalCommand(){
 				protected void connect(String address, int port){
 					System.out.println("Conectando com " + address + ": "+ port);
@@ -95,20 +90,7 @@ public class Host{
 				}
 		};
 
-		while(true){
-			System.out.print("$ ");
-			msg = teclado.nextLine();
-			// REFATORAR: Pensar numa forma de reusar os comandos quando apertas as setas
-			if(terminal.run(msg)){
-				//output.setDst("192.168.0.10", 12345);
-				//System.out.println("### Connected");
-				//output.run();
-				
-			}
-			if(msg.trim().equals("exit")){
-				break;
-			}
-		}
+		terminal.start();
 	}
 
 	/*
