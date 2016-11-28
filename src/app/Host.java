@@ -12,6 +12,7 @@ import src.util.EthManager;
 import src.app.Connection;
 import src.app.domain.Servidor;
 import src.app.domain.Cliente;
+import src.app.domain.*;
 
 public class Host{
 
@@ -82,20 +83,32 @@ public class Host{
 		Scanner teclado = new Scanner(System.in);
 		String msg;
 
+		TerminalCommand terminal = new TerminalCommand(){
+				protected void connect(String address, int port){
+					System.out.println("Conectando com " + address + ": "+ port);
+				}
+				protected void exit(){
+					System.out.println("Exiting");
+				}
+				protected void send(String msg){
+					System.out.println("Sending: "+msg);
+				}
+		};
+
 		while(true){
 			System.out.print("$ ");
 			msg = teclado.nextLine();
-			// REFATORAR: usar interpretador para captura o ip de origem e destino
-			if(msg.trim().equals("connect")){
-				output.setDst("192.168.0.10", 12345);
-				System.out.println("### Connected");
-				output.run();
+			// REFATORAR: Pensar numa forma de reusar os comandos quando apertas as setas
+			if(terminal.run(msg)){
+				//output.setDst("192.168.0.10", 12345);
+				//System.out.println("### Connected");
+				//output.run();
 				
-			}else if(msg.trim().equals("exit")){
+			}
+			if(msg.trim().equals("exit")){
 				break;
 			}
 		}
-
 	}
 
 	/*
