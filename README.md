@@ -2,7 +2,7 @@
 
 ---
 
-## Início
+## Instalação
 
 Para adquirir o projeto, siga os passos:
 
@@ -21,7 +21,7 @@ make start   // inicia o projeto com as depenências e as configurações do arq
 ```
 
 
-## Para colaborar com o projeto, siga os passos:
+## Colabore
 
 * 1. Obtenha a versão atual estável (`master`)
 
@@ -62,7 +62,7 @@ git merge feature/nome-da-sua-branch
 ```
 
 
-## Descrição do projeto
+## Descrição
 
 * `conf/`:   **arquivos de configuração** básica para funcionamento do **Virtual-Host**
 * `data/`:   **arquivos**, bancos de dados etc
