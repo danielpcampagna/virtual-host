@@ -1,7 +1,1 @@
-{
-	"host":{
-		"address": "192.168.0.10",
-		"port": 12345
-	},
-	"mode":"client"
-}
+{"mode":"client","host":{"address":"192.168.0.10","port":12345},"key":"A75B7F8D555AE06176E5698322F44112"}

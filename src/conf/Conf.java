@@ -19,6 +19,7 @@ public class Conf{
 	public static final String HOST_PORT = "port";
 
 	public static final String MODE = "mode";
+	public static final String KEY = "key";
 
 	// Valores padrões para MODE
 	public static final String MODE_SERVER = "server";
@@ -27,6 +28,7 @@ public class Conf{
 	// Valores das chaves
 	private String address;
 	private String mode;
+	private String key;
 	private int port;
 
 	private JSONObject conf;
@@ -48,6 +50,7 @@ public class Conf{
 	}
 
 	private void buildVariables(){
+		System.out.println(RelativePath.getPath(confFile));
 		JSONDAO dao = new JSONDAO(RelativePath.getPath(confFile));
 		this.conf = dao.read();
 		/*
@@ -61,8 +64,38 @@ public class Conf{
 		this.port = (int)(long)(host.get(HOST_PORT));
 
 		this.mode = (String)(conf.get(MODE));
+		this.key = (String)(conf.get(KEY));
 
 		//this.checkSettings();
+
+		/*
+		* ##########################################
+		* # FIM
+		* ##########################################
+		*/
+	}
+
+	public void saveVariables(){
+		JSONDAO dao = new JSONDAO(RelativePath.getPath(confFile));
+		/*
+		* ##########################################
+		* # USE ESTA REGIÃO PARA SALVAR
+		* # AS VARIÁVEIS DO ARQUIVO DE CONFIGURAÇÃO
+		* ##########################################
+		*/
+		JSONObject confJSON = new JSONObject();
+
+		JSONObject hostJSON = new JSONObject();
+		hostJSON.put(HOST_ADDRESS, this.address);
+		hostJSON.put(HOST_PORT, new Integer(this.port));
+
+		confJSON.put(HOST, hostJSON);
+		confJSON.put(MODE, this.mode);
+		confJSON.put(KEY, this.key);
+
+		//this.checkSettings();
+
+		dao.save(confJSON);
 
 		/*
 		* ##########################################
@@ -100,6 +133,10 @@ public class Conf{
 		return this.address;
 	}
 
+	public String getKey(){
+		return this.key;
+	}
+
 	public boolean isClient(){
 		return this.mode.trim().equals(MODE_CLIENT);
 	}
@@ -108,4 +145,12 @@ public class Conf{
 		return this.mode.trim().equals(MODE_SERVER);
 	}
 
+	/*
+	* #######################################################
+	* # FUNÇÕES DE ATUALIZAÇÃO
+	* #######################################################
+	*/
+	public String setKey(String key){
+		return this.key = key;
+	}
 }

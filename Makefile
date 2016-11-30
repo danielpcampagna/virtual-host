@@ -21,9 +21,8 @@ clear:
 	##########################
 setup:
 	##########################
-	## COMPILING
+	## COMPILE
 	##########################
-	#javac -cp lib/json-java.jar Main.java
 	javac -cp lib/json-java.jar src/app/**.java src/app/domain/**.java src/conf/**.java src/util/**.java Main.java
 	##########################
 	## END COMPILATION
@@ -31,3 +30,7 @@ setup:
 
 start:
 	java -cp .:lib/json-java.jar Main
+
+generate-key:
+	javac -cp lib/json-java.jar src/conf/Conf.java src/util/JSONDAO.java src/util/RelativePath.java src/util/GeradorDeChaveSimetrica.java
+	java -cp .:lib/json-java.jar src/util/GeradorDeChaveSimetrica
