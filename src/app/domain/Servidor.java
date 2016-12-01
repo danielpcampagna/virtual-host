@@ -48,15 +48,15 @@ public class Servidor implements Runnable {
 		Scanner entrada = new Scanner(clientSocket.getInputStream());
 		String msg;
 
-    while (entrada.hasNextLine()) {
-    	msg = entrada.nextLine();
-    	System.out.println(msg);
-    	if(msg.trim().equals(EXIT_KEYWORD)){
-    		break;
-    	}
-    }
+	    while (entrada.hasNextLine()) {
+	    	msg = entrada.nextLine();
+	    	System.out.println(msg);
+	    	if(msg.trim().equals(EXIT_KEYWORD)){
+	    		break;
+	    	}
+	    }
 
-    entrada.close();
+	    entrada.close();
 	}
 
 	private void exit() throws IOException{

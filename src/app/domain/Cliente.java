@@ -12,6 +12,7 @@ public class Cliente {
 	private int port;
 	private String serverAddress;
 	private int serverPort;
+	private boolean isConnected = false;
 
 	private Socket clientSocket;
 
@@ -57,6 +58,8 @@ public class Cliente {
 			this.serverPort,
 			InetAddress.getByName(this.address),
 			this.port);
+
+		this.isConnected = true;
 	}
 
 	private void waiting(){
@@ -64,25 +67,36 @@ public class Cliente {
 
 	private void messages() throws IOException{
 		Scanner teclado = new Scanner(System.in);
-    PrintStream saida = new PrintStream(clientSocket.getOutputStream());
-    
-    String msg;
-    while (teclado.hasNextLine()) {
-      msg = teclado.nextLine();
-      saida.println(msg);
-      if(msg.trim().equals(EXIT_KEYWORD)){
-      	break;
-      }
-    }
-    
-    saida.close();
-    teclado.close();
+	    PrintStream saida = new PrintStream(clientSocket.getOutputStream());
+	    
+	    String msg;
+	    while (teclado.hasNextLine()) {
+	      msg = teclado.nextLine();
+	      saida.println(msg);
+	      if(msg.trim().equals(EXIT_KEYWORD)){
+	      	break;
+	      }
+	    }
+	    
+	    saida.close();
+	    teclado.close();
 	}
 
 	private void exit(){
+		this.isConnected = false;
 	}
 
 	private void errorMessage(Exception e){
 		System.err.println(e.getMessage());
+	}
+
+
+	/*
+	* #####################################
+	* # CONSULTA
+	* #####################################
+	*/
+	public boolean isConnected(){
+		return this.isConnected;
 	}
 }

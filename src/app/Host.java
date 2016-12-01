@@ -56,17 +56,17 @@ public class Host{
 		System.out.println("####### VIRTUAL HOST STARTED ######");
 		System.out.println("###################################");
 
+		Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
+	        public void run() {
+	            down();
+	        }
+	    }, "Shutdown-Server"));
+
 		if(this.settings.isServer()){
 			new Thread(input).start();
 		}else if(this.settings.isClient()){
 			this.hostTerminal();
 		}
-
-		Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
-        public void run() {
-            down();
-        }
-    }, "Shutdown-Server"));
 	}
 
 	public void down() {
@@ -89,7 +89,11 @@ public class Host{
 					System.out.println("Exiting");
 				}
 				protected void send(String msg){
-					System.out.println("Sending: "+msg);
+					if(output.isConnected()){
+						System.out.println("Sending: "+msg);
+					}else{
+						System.out.println("You need to be connected");
+					}
 				}
 		};
 
